@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe 360 — Giros | Explorando en Libertad</title>
+<style>
+  :root{
+    --ink:#2b2622; --muted:#7a6f66; --line:#e7ded4; --bg:#faf6f0;
+    --card:#ffffff; --accent:#c47a4a; --accent-soft:#f3e2d4;
+    --green:#4f8a5b; --amber:#c99a2e; --red:#c0562f; --blue:#4a6d8c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:16px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 80px}
+  header.top{background:linear-gradient(135deg,#c47a4a,#a85f38);color:#fff;
+    padding:48px 22px 40px;margin-bottom:34px}
+  header.top .inner{max-width:880px;margin:0 auto}
+  .kicker{text-transform:uppercase;letter-spacing:.14em;font-size:12px;opacity:.85;margin:0}
+  header.top h1{font-size:30px;margin:8px 0 6px;font-weight:700;line-height:1.2}
+  header.top p{margin:0;opacity:.92;font-size:15px}
+  .meta{margin-top:18px;font-size:13px;opacity:.85;display:flex;gap:18px;flex-wrap:wrap}
+  h2{font-size:21px;margin:44px 0 4px;padding-top:10px}
+  h2 .num{color:var(--accent);font-weight:700;margin-right:8px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin:16px 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .card h3{margin:0 0 10px;font-size:17px}
+  p{margin:10px 0}
+  ul{margin:10px 0;padding-left:20px}
+  li{margin:6px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12.5px;
+    font-weight:600;margin:2px 4px 2px 0}
+  .p-green{background:#e5f0e6;color:var(--green)}
+  .p-amber{background:#f7edcf;color:#8a6a12}
+  .p-red{background:#f6e0d6;color:var(--red)}
+  .p-blue{background:#e0e9f1;color:var(--blue)}
+  .score{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .score .num{font-size:46px;font-weight:800;color:var(--accent);line-height:1}
+  .score .lbl{font-size:14px;color:var(--muted)}
+  .bar{height:9px;border-radius:6px;background:var(--accent-soft);overflow:hidden;margin-top:6px}
+  .bar > span{display:block;height:100%;background:var(--accent)}
+  .rowline{display:flex;justify-content:space-between;gap:12px;padding:9px 0;
+    border-bottom:1px dashed var(--line);font-size:14.5px}
+  .rowline:last-child{border-bottom:none}
+  .rowline b{font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+  th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .dafo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.dafo{grid-template-columns:1fr}}
+  .dafo .q{border-radius:12px;padding:16px 18px}
+  .q.f{background:#e9f1ea;border:1px solid #cfe2d1}
+  .q.o{background:#e2ebf2;border:1px solid #cfe0ec}
+  .q.d{background:#f7ede0;border:1px solid #ecdac2}
+  .q.a{background:#f6e2da;border:1px solid #ecccc0}
+  .q h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em}
+  .q ul{padding-left:18px;margin:0}
+  .q li{font-size:13.5px;margin:5px 0}
+  .flag{padding:12px 16px;border-radius:10px;font-size:14px;margin:10px 0}
+  .flag.warn{background:#fdf6e3;border:1px solid #ecdca0}
+  .prio{border-left:4px solid var(--accent);padding:4px 0 4px 16px;margin:16px 0}
+  .prio h4{margin:0 0 4px;font-size:16px}
+  .prio .tag{font-size:12px;color:var(--muted)}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13px}
+  .note{font-size:13px;color:var(--muted);font-style:italic}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="inner">
+    <p class="kicker">Informe 360 · Análisis de posible cliente</p>
+    <h1>Giros — Explorando en Libertad</h1>
+    <p>Espacio de acompañamiento educativo · Primera infancia · Zona Norte, Buenos Aires</p>
+    <div class="meta">
+      <span>🌐 girosenlibertad.com</span>
+      <span>📸 @espaciogiros</span>
+      <span>📅 18 ago 2026</span>
+      <span>Preparado por Deb</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="flag warn">
+    <b>Nota de alcance:</b> este informe se basa en la información pública de la web y redes visibles. Los puntos marcados como <span class="pill p-amber">a validar</span> deben confirmarse en la primera conversación con el cliente (precios, volumen de alumnos, presupuesto, quién decide, herramientas que ya usan).
+  </div>
+
+  <!-- RESUMEN EJECUTIVO -->
+  <h2><span class="num">01</span>Resumen ejecutivo</h2>
+  <p class="sub">Lo esencial en 30 segundos.</p>
+  <div class="card">
+    <div class="score">
+      <div>
+        <div class="num">7,5<span style="font-size:20px;color:var(--muted)">/10</span></div>
+        <div class="lbl">Encaje como cliente (fit)</div>
+      </div>
+      <div style="flex:1;min-width:220px">
+        <div class="bar"><span style="width:75%"></span></div>
+        <p style="margin:10px 0 0;font-size:14px">Buen encaje para servicios de marketing local: negocio con propuesta clara y diferenciada, pero con presencia digital <b>básica</b> y sin embudo de captación. Hay margen de mejora amplio y visible, que es justo donde se demuestra valor rápido.</p>
+      </div>
+    </div>
+    <hr style="border:none;border-top:1px solid var(--line);margin:18px 0">
+    <p><b>Qué es:</b> un espacio físico (dos sedes, Martínez y La Lucila) de talleres para bebés y niños de primera infancia y sus familias, con enfoque de juego libre y crianza respetuosa (Montessori / Reggio Emilia) y grupos reducidos.</p>
+    <p><b>Dónde está la oportunidad:</b> la propuesta pedagógica está muy bien construida, pero la <b>maquinaria comercial y digital es incipiente</b>: web informativa sin captación, sin precios, conversión dependiente 100% de WhatsApp, e Instagram como único canal social. Un negocio "bueno por dentro" pero "invisible por fuera".</p>
+    <p><b>Recomendación:</b> es un cliente abordable y con recorrido. El gancho de entrada más fuerte es <b>captación local + embudo de inscripción a talleres</b> (ver sección 06).</p>
+  </div>
+
+  <!-- PERFIL DEL NEGOCIO -->
+  <h2><span class="num">02</span>Perfil del negocio</h2>
+  <p class="sub">Qué hacen, para quién y cómo lo cuentan.</p>
+  <div class="card">
+    <div class="rowline"><b>Categoría</b><span>Educación / primera infancia · servicio presencial local</span></div>
+    <div class="rowline"><b>Ubicación</b><span>Zona Norte, Buenos Aires — sedes Casa Martínez y Casa La Lucila</span></div>
+    <div class="rowline"><b>Propuesta de valor</b><span>"Acompañamos el crecimiento de bebés y niños desde el juego libre y la educación respetuosa"</span></div>
+    <div class="rowline"><b>Metodología</b><span>Montessori y Reggio Emilia · grupos reducidos · docentes especializados</span></div>
+    <div class="rowline"><b>Público</b><span>Familias con hijos de 0 a 5 años (madres, padres y cuidadores)</span></div>
+    <div class="rowline"><b>Tono de marca</b><span>Cálido, cercano, emotivo · valores de respeto, amor y disfrute</span></div>
+    <div class="rowline"><b>Contacto</b><span>WhatsApp +54 9 11 6667 4434 · contacto@girosenlibertad.com · IG @espaciogiros</span></div>
+  </div>
+  <div class="card">
+    <h3>Cartera de servicios</h3>
+    <table>
+      <tr><th>Servicio</th><th>Edad</th><th>Formato</th><th>Precio</th></tr>
+      <tr><td>Taller Anual</td><td>Deambuladores hasta 3 años</td><td>Turno mañana o tarde</td><td><span class="pill p-amber">a validar</span></td></tr>
+      <tr><td>Talleres en Familia</td><td>Con acompañante</td><td>Semanal, turno tarde</td><td><span class="pill p-amber">a validar</span></td></tr>
+      <tr><td>Talleres Lúdicos</td><td>3, 4 y 5 años</td><td>Turno tarde</td><td><span class="pill p-amber">a validar</span></td></tr>
+      <tr><td>Talleres de Crianza</td><td>Adultos (familias)</td><td>Orientación a familias</td><td><span class="pill p-amber">a validar</span></td></tr>
+    </table>
+    <p class="note">Disciplinas transversales: yoga, música y juego libre. Ningún precio publicado — todo pasa por consulta directa.</p>
+  </div>
+
+  <!-- PERFIL COMERCIAL -->
+  <h2><span class="num">03</span>Perfil comercial (encaje como cliente)</h2>
+  <p class="sub">¿Vale la pena invertir tiempo comercial? Cualificación tipo BANT.</p>
+  <div class="card">
+    <div class="rowline"><b>Necesidad</b><span><span class="pill p-green">Alta</span> Presencia digital básica y sin sistema de captación → dolor claro y demostrable</span></div>
+    <div class="rowline"><b>Presupuesto</b><span><span class="pill p-amber">A validar</span> Negocio pequeño / dos sedes. Probable ticket medio-bajo; requiere propuesta escalonada</span></div>
+    <div class="rowline"><b>Decisión</b><span><span class="pill p-green">Ágil</span> Probable dueña/fundadora que decide directo → ciclo de venta corto</span></div>
+    <div class="rowline"><b>Urgencia</b><span><span class="pill p-amber">Estacional</span> Ligada al calendario de inscripciones (arranque de ciclo lectivo / talleres)</span></div>
+    <div class="rowline"><b>Fit de servicio</b><span><span class="pill p-green">Bueno</span> Encaja con marketing local, redes, embudo de captación y contenido</span></div>
+  </div>
+  <div class="flag warn">
+    <b>Señal a favor:</b> el negocio ya tiene marca, identidad y propuesta sólida. No hay que "construir" el fondo, solo <b>amplificar y sistematizar</b> — trabajo de resultados rápidos y visibles.<br>
+    <b>Señal de cautela:</b> negocio local pequeño = sensibilidad al precio. Conviene entrar con un servicio de entrada acotado y demostrar ROI antes de proponer retainer grande.
+  </div>
+
+  <!-- AUDITORIA MARKETING -->
+  <h2><span class="num">04</span>Auditoría de marketing digital</h2>
+  <p class="sub">Estado de web, SEO, canales y conversión.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>🌐 Web</h3>
+      <p><span class="pill p-amber">Informativa, no comercial</span></p>
+      <ul>
+        <li>Buena estructura de contenido (propuesta pedagógica, espacios, talleres, recursos).</li>
+        <li>Sin precios ni sistema de inscripción online → toda la conversión depende de WhatsApp.</li>
+        <li>Sin captación de leads (no hay formulario, lista de espera ni lead magnet).</li>
+        <li>A validar: velocidad, versión móvil, píxeles/analítica instalados.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔎 SEO local</h3>
+      <p><span class="pill p-red">Sin trabajar</span></p>
+      <ul>
+        <li>Oportunidad clara en búsquedas locales ("talleres crianza respetuosa Martínez / La Lucila").</li>
+        <li>A validar: ficha de Google Business Profile en ambas sedes (clave para negocio local).</li>
+        <li>Contenido de blog/recursos infrautilizado para posicionar por dolores de familias.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📸 Redes sociales</h3>
+      <p><span class="pill p-amber">Solo Instagram</span></p>
+      <ul>
+        <li>Instagram (@espaciogiros) como único canal — coherente con el público (madres/padres).</li>
+        <li>A validar: frecuencia, engagement, uso de Reels y contenido de crianza (alto potencial viral).</li>
+        <li>Sin presencia en otros canales donde también está el público (grupos locales, Facebook barrial).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎯 Conversión y fidelización</h3>
+      <p><span class="pill p-red">Sin embudo</span></p>
+      <ul>
+        <li>No hay recorrido definido: descubrimiento → interés → inscripción → recomendación.</li>
+        <li>Sin email/base de datos de familias para reinscripción y boca a boca.</li>
+        <li>El boca a boca (fuerte en este sector) no está sistematizado en referidos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COMPETENCIA + DAFO -->
+  <h2><span class="num">05</span>Análisis competitivo y DAFO</h2>
+  <p class="sub">Posicionamiento frente al mercado local.</p>
+  <div class="card">
+    <p><b>Contexto de mercado:</b> la crianza respetuosa y el juego libre son categorías <b>en crecimiento</b> entre familias jóvenes urbanas. En Zona Norte de Buenos Aires conviven jardines maternales tradicionales, espacios de estimulación temprana, otros talleres de crianza y la oferta pública municipal. Giros compite por diferenciación (metodología + grupos reducidos + calidez), no por precio ni por volumen.</p>
+    <p class="note">Mapa competitivo detallado por competidor: pendiente de una segunda fase con nombres concretos de la zona (a validar con el cliente qué competidores percibe).</p>
+  </div>
+  <div class="dafo">
+    <div class="q f">
+      <h4>Fortalezas</h4>
+      <ul>
+        <li>Propuesta pedagógica clara y diferenciada (Montessori/Reggio).</li>
+        <li>Marca cálida, identidad y valores bien definidos.</li>
+        <li>Dos sedes = cobertura y prueba de tracción.</li>
+        <li>Sector con boca a boca potente.</li>
+      </ul>
+    </div>
+    <div class="q o">
+      <h4>Oportunidades</h4>
+      <ul>
+        <li>Categoría en auge entre familias jóvenes.</li>
+        <li>SEO local y Google Business sin explotar.</li>
+        <li>Contenido de crianza = alto potencial orgánico en Reels.</li>
+        <li>Embudo de inscripción y referidos por sistematizar.</li>
+      </ul>
+    </div>
+    <div class="q d">
+      <h4>Debilidades</h4>
+      <ul>
+        <li>Web sin captación ni conversión online.</li>
+        <li>Dependencia total de WhatsApp e Instagram.</li>
+        <li>Sin datos/analítica ni base de familias.</li>
+        <li>Precios opacos: fricción para el interesado.</li>
+      </ul>
+    </div>
+    <div class="q a">
+      <h4>Amenazas</h4>
+      <ul>
+        <li>Competidores locales con más músculo digital.</li>
+        <li>Estacionalidad fuerte de inscripciones.</li>
+        <li>Sensibilidad al precio en contexto económico.</li>
+        <li>Dependencia de un canal (si IG cae, cae la captación).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OPORTUNIDADES / QUE OFRECERLE -->
+  <h2><span class="num">06</span>Oportunidades y qué ofrecerle</h2>
+  <p class="sub">Iniciativas priorizadas para tu propuesta, de más rápida a más estratégica.</p>
+
+  <div class="prio">
+    <span class="tag">PRIORIDAD 1 · Quick win · Impacto alto / esfuerzo bajo</span>
+    <h4>Captación local: Google Business + SEO local + ficha de conversión</h4>
+    <p>Poner ambas sedes en el mapa (Google Business Profile optimizado), landing con precios/rangos y formulario de "lista de interés". Convierte búsquedas locales de familias en consultas, sin depender solo del boca a boca.</p>
+  </div>
+  <div class="prio">
+    <span class="tag">PRIORIDAD 2 · Motor de demanda</span>
+    <h4>Plan de contenido en Instagram (Reels de crianza) + calendario de campañas de inscripción</h4>
+    <p>Contenido de crianza respetuosa que educa y atrae (alto potencial orgánico) + campañas puntuales alineadas a los picos de inscripción. Aprovecha su tono cálido ya existente.</p>
+  </div>
+  <div class="prio">
+    <span class="tag">PRIORIDAD 3 · Sistema</span>
+    <h4>Embudo de inscripción + base de familias + programa de referidos</h4>
+    <p>Recorrido claro descubrimiento → consulta → inscripción → recomendación. Email/WhatsApp para reinscripción de familias actuales y referidos sistematizados (el activo más rentable en este sector).</p>
+  </div>
+  <div class="prio">
+    <span class="tag">PRIORIDAD 4 · Estratégico</span>
+    <h4>Publicidad geolocalizada (Meta Ads) en temporada de inscripciones</h4>
+    <p>Campañas de bajo presupuesto segmentadas por radio de las sedes y perfil de familias, activadas solo en ventanas de inscripción para maximizar retorno.</p>
+  </div>
+
+  <!-- PROXIMOS PASOS -->
+  <h2><span class="num">07</span>Próximos pasos sugeridos</h2>
+  <div class="card">
+    <ul>
+      <li><b>Validar en llamada de descubrimiento:</b> precios actuales, nº de familias/plazas, quién decide, presupuesto disponible, temporada de inscripción y herramientas que ya usan.</li>
+      <li><b>Cerrar el mapa competitivo:</b> pedirle qué 2-3 espacios percibe como competencia y analizarlos en detalle.</li>
+      <li><b>Preparar una propuesta escalonada:</b> empezar por el quick win (Prioridad 1) como servicio de entrada y demostrar ROI antes del retainer.</li>
+      <li><b>Definir el gancho de tu primer contacto:</b> apoyarse en un dato concreto ("no apareces en Google cuando una familia de Martínez busca talleres de crianza").</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Informe preliminar basado en información pública (web y redes visibles) a 18 de agosto de 2026. Los puntos marcados "a validar" requieren confirmación directa con el cliente. Documento de trabajo interno para preparación comercial.</p>
+    <p>Fuentes: girosenlibertad.com (home y sección talleres) · Instagram @espaciogiros.</p>
+  </footer>
+
+</div>
+</body>
+</html>
